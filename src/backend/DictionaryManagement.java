@@ -1,8 +1,7 @@
 package backend;
 
 
-import java.io.FileNotFoundException;
-import java.io.File;
+import java.io.*;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -109,5 +108,18 @@ public class DictionaryManagement {
         }
 
         return ret;
+    }
+
+    public static void dictionaryExportToFile(Dictionary dict, String dst) {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(dst), "utf-8"))) {
+            for (int i = 0; i < dict.size(); ++i) {
+                String word_target = dict.get(i).getWordTarget();
+                String word_explain = dict.get(i).getWordExplain();
+                writer.write(String.format("%s\t%s\n", word_target, word_explain));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
