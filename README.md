@@ -10,8 +10,8 @@ MSV: 19020017
 - [x] insertFromFile
 - [x] Word lookup
 - [x] dictionaryAdvance
-- [ ] insert/remove data from commandline
-- [ ] dictionarySearcher
+- [x] insert/remove data from commandline
+- [x] dictionarySearcher
 - [ ] dictionaryExportToFile
 - [ ] GUI
 - [ ] Optimize word searching algorithm
