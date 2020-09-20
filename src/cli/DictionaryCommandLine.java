@@ -8,6 +8,11 @@ public class DictionaryCommandLine {
         DictionaryCommandline.showAllWords(dict);
     }
 
+    public static void dictionaryAdvance() {
+        Dictionary dict = new Dictionary();
+        DictionaryManagement.
+    }
+
     public static void main(String []args) {
         dictionaryBasic();
     }
