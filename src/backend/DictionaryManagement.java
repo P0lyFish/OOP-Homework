@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class DictionaryManagement {
@@ -67,5 +69,45 @@ public class DictionaryManagement {
         }
 
         return null;
+    }
+
+    public static void addWordFromCmd(Dictionary dict) {
+        Scanner cin = new Scanner(System.in);
+
+        out.print("New word: ");
+        String word_target = cin.nextLine();
+
+        out.print("Corresponding meaning: ");
+        String word_explain = cin.nextLine();
+
+        dict.add(word_target, word_explain);
+    }
+
+    public static void removeWordFromCmd(Dictionary dict) {
+        Scanner cin = new Scanner(System.in);
+
+        out.print("word need to be removed: ");
+        String word_target = cin.nextLine();
+
+        if (dict.remove(word_target)) {
+            out.println(word_target + " has been removed");
+        }
+        else {
+            out.println(word_target + " is not belong to the dictionary");
+        }
+    }
+
+    public static List<String> getPrefixMatchedList(Dictionary dict, String prefix) {
+        List<String> ret = new ArrayList<String>();
+
+        for (int i = 0; i < dict.size(); ++i) {
+            String word_target = dict.get(i).getWordTarget();
+
+            if (word_target.substring(0, prefix.length()).equals(prefix)) {
+                ret.add(word_target);
+            }
+        }
+
+        return ret;
     }
 }
