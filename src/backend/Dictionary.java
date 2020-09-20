@@ -27,4 +27,17 @@ public class Dictionary {
     public Word get(int i) {
         return words.get(i);
     }
+
+    public boolean remove(String word_target) {
+        for (int i = 0; i < words.size(); ++i) {
+            if (words.get(i).getWordTarget().equals(word_target)) {
+                words.set(i, words.get(words.size() - 1));
+                words.remove(words.size() - 1);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
