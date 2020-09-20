@@ -12,7 +12,7 @@ MSV: 19020017
 - [x] dictionaryAdvance
 - [x] insert/remove data from commandline
 - [x] dictionarySearcher
-- [ ] dictionaryExportToFile
-- [ ] GUI
+- [x] dictionaryExportToFile
+- [x] GUI
 - [ ] Optimize word searching algorithm
 - [ ] Use API google translate 
