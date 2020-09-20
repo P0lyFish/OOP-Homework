@@ -1,6 +1,9 @@
 package cli;
 
 
+import backend.Dictionary;
+
+
 class DictionaryCommandline {
 
     public static final int COLUMN1_WIDTH = 6;
