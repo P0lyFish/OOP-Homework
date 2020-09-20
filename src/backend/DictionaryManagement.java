@@ -102,7 +102,8 @@ public class DictionaryManagement {
         for (int i = 0; i < dict.size(); ++i) {
             String word_target = dict.get(i).getWordTarget();
 
-            if (word_target.substring(0, prefix.length()).equals(prefix)) {
+            if (prefix.length() <= word_target.length() &&
+                    word_target.substring(0, prefix.length()).equals(prefix)) {
                 ret.add(word_target);
             }
         }
