@@ -8,6 +8,8 @@ MSV: 19020017
 - [x] showAllWords
 - [x] dictionaryBasic
 - [x] insertFromFile
+- [x] Word lookup
+- [x] dictionaryAdvance
 - [ ] insert/remove data from commandline
 - [ ] dictionarySearcher
 - [ ] dictionaryExportToFile
