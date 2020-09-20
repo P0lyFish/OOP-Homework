@@ -2,6 +2,10 @@ package cli;
 
 
 import backend.Dictionary;
+import backend.DictionaryManagement;
+
+import java.util.List;
+import java.util.Scanner;
 
 
 class DictionaryCommandline {
@@ -41,6 +45,19 @@ class DictionaryCommandline {
             }
 
             System.out.println(col1.toString() + col2.toString() + col3);
+        }
+    }
+
+    public static void dictionarySearcher(Dictionary dict) {
+        System.out.print("Seach for: ");
+        Scanner cin = new Scanner(System.in);
+        String prefix = cin.nextLine();
+
+        List<String> matchedList = DictionaryManagement.getPrefixMatchedList(dict, prefix);
+
+        System.out.printf("Found %d matched words: ", matchedList.size());
+        for (String s : matchedList) {
+            System.out.println(s);
         }
     }
 }
