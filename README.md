@@ -7,7 +7,7 @@ MSV: 19020017
 - [x] insertFromCommandline
 - [x] showAllWords
 - [x] dictionaryBasic
-- [ ] insertFromFile
+- [x] insertFromFile
 - [ ] insert/remove data from commandline
 - [ ] dictionarySearcher
 - [ ] dictionaryExportToFile
