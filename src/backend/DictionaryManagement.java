@@ -99,6 +99,10 @@ public class DictionaryManagement {
     public static List<String> getPrefixMatchedList(Dictionary dict, String prefix) {
         List<String> ret = new ArrayList<String>();
 
+        if (prefix.isEmpty()) {
+            return ret;
+        }
+
         for (int i = 0; i < dict.size(); ++i) {
             String word_target = dict.get(i).getWordTarget();
 
