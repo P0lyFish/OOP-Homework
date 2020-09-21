@@ -2,6 +2,7 @@ package backend;
 
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -59,11 +60,52 @@ public class DictionaryManagement {
         }
     }
 
-    public static String dictionaryLookup(Dictionary dict, String word_target) {
+    public static void insertFromFileAnhViet190K(Dictionary dict) {
+        out.println("Importing data from anhviet190K database");
+
+        File file = new File("resources/anhviet109K.txt");
+        try (FileInputStream fileReader = new FileInputStream(file)) {
+            byte[] byte_data = new byte[(int)file.length()];
+            fileReader.read(byte_data);
+            String data = new String(byte_data, StandardCharsets.UTF_8);
+            System.out.println(data.length());
+
+            String[] words = data.split("@");
+            int cnt = 0;
+            for (String word : words) {
+                String []target_pronunciation_explain = word.split("\n", 2);
+                if (target_pronunciation_explain.length != 2) {
+                    continue;
+                }
+                String []target_pronunciation = target_pronunciation_explain[0].split("/", 2);
+                String word_target = target_pronunciation[0];
+                word_target = word_target.trim();
+                // System.out.println(target_pronunciation_explain[0] + ' ' + target_pronunciation[1]);
+                String word_pronunciation = "";
+                if (target_pronunciation.length > 1) {
+                    word_pronunciation = target_pronunciation[1];
+                    word_pronunciation = "/" + word_pronunciation;
+                }
+                else {
+                    word_pronunciation = "no data";
+                }
+                String word_explain = target_pronunciation_explain[1];
+
+                if (word_target.length() > 0) {
+                    dict.add(word_target, word_explain, word_pronunciation);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            out.println("Invalid import file!");
+        }
+    }
+
+    public static String[] dictionaryLookup(Dictionary dict, String word_target) {
         for (int i = 0; i < dict.size(); ++i) {
             Word w = dict.get(i);
             if (w.getWordTarget().equals(word_target.toLowerCase())) {
-                return w.getWordExplain();
+                return new String[] {w.getWordExplain(), w.getWordPronunciation()};
             }
         }
 
@@ -117,7 +159,7 @@ public class DictionaryManagement {
 
     public static void dictionaryExportToFile(Dictionary dict, String dst) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(dst), "utf-8"))) {
+                new FileOutputStream(dst), StandardCharsets.UTF_8))) {
             for (int i = 0; i < dict.size(); ++i) {
                 String word_target = dict.get(i).getWordTarget();
                 String word_explain = dict.get(i).getWordExplain();
