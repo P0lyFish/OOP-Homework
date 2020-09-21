@@ -60,4 +60,19 @@ class DictionaryCommandline {
             System.out.println(s);
         }
     }
+
+    public static void lookup(Dictionary dict) {
+        System.out.print("Lookup for: ");
+        Scanner cin = new Scanner(System.in);
+
+        String lookup_word = cin.nextLine();
+        String result = DictionaryManagement.dictionaryLookup(dict, lookup_word);
+
+        if (result == null) {
+            System.out.println(lookup_word + " is not found in the dictionary");
+        }
+        else {
+            System.out.println("Meaning: " + result);
+        }
+    }
 }

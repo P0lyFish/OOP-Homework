@@ -8,33 +8,39 @@ import java.util.Scanner;
 
 
 public class DictionaryCommandLine {
-    public static void dictionaryBasic() {
-        Dictionary dict = new Dictionary();
+    private Dictionary dict;
+
+    public DictionaryCommandLine() {
+        dict = new Dictionary();
+    }
+
+    public DictionaryCommandLine(Dictionary dict) {
+        this.dict = dict;
+    }
+
+    public void setDict(Dictionary dict) {
+        this.dict = dict;
+    }
+
+    public Dictionary getDict() {
+        return this.dict;
+    }
+
+    public void dictionaryBasic() {
         DictionaryManagement.insertFromCommandline(dict);
         DictionaryCommandline.showAllWords(dict);
     }
 
-    public static void dictionaryAdvance() {
-        Dictionary dict = new Dictionary();
+    public void dictionaryAdvance() {
         DictionaryManagement.insertFromFile(dict);
         DictionaryCommandline.showAllWords(dict);
 
+        Scanner cin = new Scanner(System.in);
+
         while (true) {
-            System.out.print("Lookup for: ");
-            Scanner cin = new Scanner(System.in);
-
-            String lookup_word = cin.nextLine();
-            String result = DictionaryManagement.dictionaryLookup(dict, lookup_word);
-
-            if (result == null) {
-                System.out.println(lookup_word + " is not found in the dictionary");
-            }
-            else {
-                System.out.println("Meaning: " + result);
-            }
+            DictionaryCommandline.lookup(dict);
 
             boolean stop = false;
-
             while (true) {
                 System.out.print("Continue? [Y|n]: ");
                 String s = cin.nextLine();
@@ -53,7 +59,15 @@ public class DictionaryCommandLine {
     }
 
     public static void main(String []args) {
-        // dictionaryBasic();
-        dictionaryAdvance();
+//         dictionaryBasic();
+//         dictionaryAdvance();
+        Dictionary dict = new Dictionary();
+        DictionaryManagement.insertFromFile(dict);
+        DictionaryManagement.dictionaryExportToFile(dict, "out.txt");
+//        DictionaryCommandline.dictionarySearcher(dict);
+//        DictionaryManagement.removeWordFromCmd(dict);
+//        DictionaryCommandline.showAllWords(dict);
+//        DictionaryManagement.addWordFromCmd(dict);
+//        DictionaryCommandline.showAllWords(dict);
     }
 }
