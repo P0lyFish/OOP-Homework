@@ -17,7 +17,7 @@ public class Dictionary {
     }
 
     public void add(String word_target, String word_explain) {
-        words.add(new Word(word_target, word_explain));
+        words.add(new Word(word_target.toLowerCase(), word_explain));
     }
 
     public int size() {

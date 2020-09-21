@@ -62,7 +62,7 @@ public class DictionaryManagement {
     public static String dictionaryLookup(Dictionary dict, String word_target) {
         for (int i = 0; i < dict.size(); ++i) {
             Word w = dict.get(i);
-            if (w.getWordTarget().equals(word_target)) {
+            if (w.getWordTarget().equals(word_target.toLowerCase())) {
                 return w.getWordExplain();
             }
         }
@@ -107,7 +107,7 @@ public class DictionaryManagement {
             String word_target = dict.get(i).getWordTarget();
 
             if (prefix.length() <= word_target.length() &&
-                    word_target.substring(0, prefix.length()).equals(prefix)) {
+                    word_target.substring(0, prefix.length()).equals(prefix.toLowerCase())) {
                 ret.add(word_target);
             }
         }
