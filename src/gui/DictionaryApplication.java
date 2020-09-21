@@ -8,7 +8,7 @@ public class DictionaryApplication {
         Dictionary dict = new Dictionary();
         DictionaryManagement.insertFromFile(dict);
 
-        GUI gui = new GUI(dict);
+        GraphicInterface gui = new GraphicInterface(dict);
     }
 
     public static void main(String []args) {
