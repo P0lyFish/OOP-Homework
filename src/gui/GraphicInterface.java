@@ -4,8 +4,8 @@ import backend.Dictionary;
 
 import javax.swing.*;
 
-public class GUI {
-    GUI(Dictionary dict) {
+public class GraphicInterface {
+    GraphicInterface(Dictionary dict) {
         int FRAME_WIDTH = 800;
         int FRAME_HEIGHT = 800;
 
