@@ -19,8 +19,8 @@ public class Word {
 
     Word(String word_target, String word_explain, String word_pronunciation) {
         this.word_target = word_target;
-        this.word_explain = word_explain;
-        this.word_pronunciation = word_pronunciation;
+        this.word_explain = (word_explain.length() > 0 ? word_explain : "no data");
+        this.word_pronunciation = (word_pronunciation.length() > 0 ? word_pronunciation : "no data");
     }
 
     public void setWordTarget(String word_target) {
@@ -32,7 +32,7 @@ public class Word {
     }
 
     public void setWordExplain(String word_explain) {
-        this.word_explain = word_explain;
+        this.word_explain = (word_explain.length() > 0 ? word_explain : "no data");
     }
 
     public String getWordExplain() {
@@ -40,7 +40,7 @@ public class Word {
     }
 
     public void setWordPronunciation(String word_pronunciation) {
-        this.word_pronunciation = word_pronunciation;
+        this.word_pronunciation = (word_pronunciation.length() > 0 ? word_pronunciation : "no data");
     }
 
     public String getWordPronunciation() {

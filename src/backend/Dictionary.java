@@ -20,6 +20,10 @@ public class Dictionary {
         words.add(new Word(word_target.toLowerCase(), word_explain));
     }
 
+    public void add(String word_target, String word_explain, String word_pronunciation) {
+        words.add(new Word(word_target.toLowerCase(), word_explain, word_pronunciation));
+    }
+
     public int size() {
         return words.size();
     }
