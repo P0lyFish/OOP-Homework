@@ -6,7 +6,8 @@ import backend.DictionaryManagement;
 public class DictionaryApplication {
     public void runApplication() {
         Dictionary dict = new Dictionary();
-        DictionaryManagement.insertFromFile(dict);
+        // DictionaryManagement.insertFromFile(dict);
+        DictionaryManagement.insertFromFileAnhViet190K(dict);
 
         GraphicInterface gui = new GraphicInterface(dict);
     }

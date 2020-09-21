@@ -10,20 +10,26 @@ public class DictionaryPanel {
     JTextArea wordExplainPanel;
     DictionaryPanel(JFrame f) {
         wordExplainPanel = new JTextArea();
+        wordExplainPanel.setEditable(false);
         f.add(wordExplainPanel);
     }
 
     public void updateWord(Dictionary dict, String word_target) {
         wordExplainPanel.setText("");
 
-        String word_explain = DictionaryManagement.dictionaryLookup(dict, word_target);
-        if (word_explain == null) {
+        String[] word_data = DictionaryManagement.dictionaryLookup(dict, word_target);
+        if (word_data == null) {
             wordExplainPanel.setText(word_target + " not found");
             return;
         }
 
+        String word_explain = word_data[0];
+        String word_pronunciation = word_data[1];
         wordExplainPanel.append(word_target + '\n');
-        wordExplainPanel.append(word_explain + '\n');
+        wordExplainPanel.append("\n");
+        wordExplainPanel.append("Pronunciation: " + word_pronunciation + '\n');
+        wordExplainPanel.append("\n");
+        wordExplainPanel.append("Meaning: \n" + word_explain + '\n');
     }
 
     public JTextArea getWordExplainPanel() {

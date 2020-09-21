@@ -7,6 +7,8 @@ import backend.DictionaryManagement;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -60,7 +62,16 @@ public class SearchPanel {
 
         searchBar.addActionListener((event) -> mainPanel.updateWord(dict, searchBar.getText()));
 
-        // searchBar.addActionListener(e -> System.out.println("Fuck"));
+        matchingBox.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                String selectedWord = matchingBox.getSelectedValue();
+                if (selectedWord != null) {
+                    searchBar.setText(selectedWord);
+                    mainPanel.updateWord(dict, selectedWord);
+                }
+            }
+        });
+
         panel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, searchBar, matchingBox);
         // panel.setBounds(PANEL_BOX_X, PANEL_BOX_Y, PANEL_BOX_WIDTH, PANEL_BOX_HEIGHT);
 
