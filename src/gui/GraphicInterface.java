@@ -10,6 +10,7 @@ public class GraphicInterface {
         int FRAME_HEIGHT = 800;
 
         JFrame f = new JFrame("Dictionary");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
         DictionaryPanel mainPanel = new DictionaryPanel(f);
