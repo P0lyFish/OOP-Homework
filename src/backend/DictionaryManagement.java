@@ -1,6 +1,8 @@
 package backend;
 
 
+import util.Trie;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -102,11 +104,15 @@ public class DictionaryManagement {
     }
 
     public static String[] dictionaryLookup(Dictionary dict, String word_target) {
-        for (int i = 0; i < dict.size(); ++i) {
-            Word w = dict.get(i);
-            if (w.getWordTarget().equals(word_target.toLowerCase())) {
-                return new String[] {w.getWordExplain(), w.getWordPronunciation()};
-            }
+        // for (int i = 0; i < dict.size(); ++i) {
+        //     Word w = dict.get(i);
+        //     if (w.getWordTarget().equals(word_target.toLowerCase())) {
+        //         return new String[] {w.getWordExplain(), w.getWordPronunciation()};
+        //     }
+        // }
+        List<Word> w = dict.get(word_target);
+        if (w.size() != 0) {
+            return new String[] {w.get(0).getWordExplain(), w.get(0).getWordPronunciation()};
         }
 
         return null;
@@ -139,19 +145,11 @@ public class DictionaryManagement {
     }
 
     public static List<String> getPrefixMatchedList(Dictionary dict, String prefix) {
+        List<Word> wordMatchedList = dict.get(prefix);
+
         List<String> ret = new ArrayList<String>();
-
-        if (prefix.isEmpty()) {
-            return ret;
-        }
-
-        for (int i = 0; i < dict.size(); ++i) {
-            String word_target = dict.get(i).getWordTarget();
-
-            if (prefix.length() <= word_target.length() &&
-                    word_target.substring(0, prefix.length()).equals(prefix.toLowerCase())) {
-                ret.add(word_target);
-            }
+        for (Word w : wordMatchedList) {
+            ret.add(w.getWordTarget());
         }
 
         return ret;
@@ -160,9 +158,10 @@ public class DictionaryManagement {
     public static void dictionaryExportToFile(Dictionary dict, String dst) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(dst), StandardCharsets.UTF_8))) {
-            for (int i = 0; i < dict.size(); ++i) {
-                String word_target = dict.get(i).getWordTarget();
-                String word_explain = dict.get(i).getWordExplain();
+            List<Word> allWord = dict.get("");
+            for (int i = 0; i < allWord.size(); ++i) {
+                String word_target = allWord.get(i).getWordTarget();
+                String word_explain = allWord.get(i).getWordExplain();
                 writer.write(String.format("%s\t%s\n", word_target, word_explain));
             }
         } catch (IOException e) {

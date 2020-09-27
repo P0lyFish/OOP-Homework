@@ -14,5 +14,5 @@ MSV: 19020017
 - [x] dictionarySearcher
 - [x] dictionaryExportToFile
 - [x] GUI
-- [ ] Optimize word searching algorithm
+- [x] Optimize word searching algorithm
 - [ ] Use API google translate 

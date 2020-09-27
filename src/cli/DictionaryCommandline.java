@@ -3,6 +3,7 @@ package cli;
 
 import backend.Dictionary;
 import backend.DictionaryManagement;
+import backend.Word;
 
 import java.util.List;
 import java.util.Scanner;
@@ -16,8 +17,9 @@ class DictionaryCommandline {
     public static void showAllWords(Dictionary dict) {
 
         int maxWordLen = 0;
+        List<Word> allWords = dict.get("");
         for (int i = 0; i < dict.size(); ++i) {
-            maxWordLen = Math.max(maxWordLen, dict.get(i).getWordTarget().length());
+            maxWordLen = Math.max(maxWordLen, allWords.get(i).getWordTarget().length());
         }
 
         StringBuilder upperBar_col1 = new StringBuilder("No");
@@ -33,8 +35,8 @@ class DictionaryCommandline {
 
         for (int i = 0; i < dict.size(); ++i) {
             StringBuilder col1 = new StringBuilder(String.format("%03d", i + 1));
-            StringBuilder col2 = new StringBuilder("| " + dict.get(i).getWordTarget());
-            String col3 = "| " + dict.get(i).getWordExplain();
+            StringBuilder col2 = new StringBuilder("| " + allWords.get(i).getWordTarget());
+            String col3 = "| " + allWords.get(i).getWordExplain();
 
             while (col1.length() < COLUMN1_WIDTH) {
                 col1.append(" ");
