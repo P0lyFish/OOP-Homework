@@ -2,12 +2,14 @@
 javazoom:
 You can download here: http://www.javazoom.net/javalayer/sources.html
 Or using maven:
+```
 <!-- https://mvnrepository.com/artifact/javazoom/jlayer -->
 <dependency>
     <groupId>javazoom</groupId>
     <artifactId>jlayer</artifactId>
     <version>1.0.1</version>
 </dependency>
+```
 
 # Installation
 To use the CLI version, choose src.main.java.cli.CommandlineInterface as the main class.
