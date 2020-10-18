@@ -216,7 +216,8 @@ public class Interface extends javax.swing.JFrame {
         );
 
         addFailPopup.setTitle("Add fail");
-        addFailPopup.setBounds(new java.awt.Rectangle(0, 0, 132, 100));
+        addFailPopup.setBounds(new java.awt.Rectangle(0, 0, 132, 110));
+        addFailPopup.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addFailPopup.setPreferredSize(new java.awt.Dimension(132, 110));
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
@@ -253,7 +254,7 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        addSuccessfullyPopup.setBounds(new java.awt.Rectangle(0, 0, 500, 60));
+        addSuccessfullyPopup.setBounds(new java.awt.Rectangle(0, 0, 250, 110));
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel6.setText("Add successfully!");
@@ -272,7 +273,7 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(addSuccessfullyPopupLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel6)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addSuccessfullyPopupLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closeAddSuccessfullyPopup)
@@ -345,7 +346,7 @@ public class Interface extends javax.swing.JFrame {
         );
 
         removeSuccessfullyPopup.setTitle("Remove successfully");
-        removeSuccessfullyPopup.setBounds(new java.awt.Rectangle(0, 0, 300, 100));
+        removeSuccessfullyPopup.setBounds(new java.awt.Rectangle(0, 0, 300, 110));
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel9.setText("Remove successfully!");
@@ -381,7 +382,7 @@ public class Interface extends javax.swing.JFrame {
         );
 
         removeFailedPopup.setTitle("Remove failed");
-        removeFailedPopup.setBounds(new java.awt.Rectangle(0, 0, 300, 120));
+        removeFailedPopup.setBounds(new java.awt.Rectangle(0, 0, 250, 130));
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel10.setText("Remove failed!");
@@ -540,6 +541,7 @@ public class Interface extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateMatchingList(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMatchingList
@@ -576,11 +578,13 @@ public class Interface extends javax.swing.JFrame {
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // TODO add your handling code here:
+        removeWindow.setLocationRelativeTo(null);
         removeWindow.setVisible(true);
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void showAddWindow(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showAddWindow
         // TODO add your handling code here:
+        addWindow.setLocationRelativeTo(null);
         addWindow.setVisible(true);
     }//GEN-LAST:event_showAddWindow
 
@@ -606,9 +610,11 @@ public class Interface extends javax.swing.JFrame {
         
         if (!dict.contains(word)) {
             dict.add(word, meaning, pronounciation);
+            addSuccessfullyPopup.setLocationRelativeTo(null);
             addSuccessfullyPopup.setVisible(true);
         }
         else {
+            addFailPopup.setLocationRelativeTo(null);
             addFailPopup.setVisible(true);
         }
     }//GEN-LAST:event_addWordFromAddWindow
@@ -634,9 +640,11 @@ public class Interface extends javax.swing.JFrame {
         
         if (dict.contains(word)) {
             dict.remove(word);
+            removeSuccessfullyPopup.setLocationRelativeTo(null);
             removeSuccessfullyPopup.setVisible(true);
         }
         else {
+            removeFailedPopup.setLocationRelativeTo(null);
             removeFailedPopup.setVisible(true);
         }
     }//GEN-LAST:event_removeWordButtonActionPerformed
