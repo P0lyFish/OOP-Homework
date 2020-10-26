@@ -3,11 +3,34 @@ package backend;
 import util.Trie;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import util.LevenShteinDistance;
+
+
+class SortByLevenDist implements Comparator<Word>  { 
+    private String target;
+    LevenShteinDistance metric;
+    
+    SortByLevenDist(String target, LevenShteinDistance metric) {
+        this.target = target;
+        this.metric = metric;
+    }
+    
+    public int compare(Word w1, Word w2) { 
+        return metric.calcDist(target, w1.getWordTarget())
+                - metric.calcDist(target, w2.getWordTarget());
+    } 
+} 
 
 
 public class Dictionary {
+    final int LEV_THRESH = 4;
+    final int MAX_RECOMMENDATIONS_SIZE = 5;
+    
     Trie<Word> words;
+    LevenShteinDistance levDist = new LevenShteinDistance();
 
     public Dictionary() {
         words = new Trie<Word>();
@@ -28,9 +51,28 @@ public class Dictionary {
 
     public List<Word> get(String prefix) {
         if (!words.contains(prefix)) {
-            return new ArrayList<Word>();
+            return new ArrayList<>();
         }
         return words.queryPrefix(prefix.toLowerCase());
+    }
+    
+    public List<Word> getRecommendations(String wordTarget) {
+        List<Word> allWords = words.queryPrefix("");
+        List<Word> res = new ArrayList<>();
+        
+        for (Word candidate : allWords) {
+            if (levDist.calcDist(candidate.getWordTarget(), wordTarget) < LEV_THRESH) {
+                res.add(candidate);
+            }
+        }
+        
+        Collections.sort(res, new SortByLevenDist(wordTarget, levDist));
+        
+        if (res.size() <= MAX_RECOMMENDATIONS_SIZE) {
+            return res;
+        }
+        
+        return res.subList(0, MAX_RECOMMENDATIONS_SIZE);
     }
 
     public Trie<Word> getWords() {

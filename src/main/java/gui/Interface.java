@@ -7,6 +7,7 @@ package gui;
 
 import backend.Dictionary;
 import backend.DictionaryManagement;
+import backend.Word;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -22,6 +23,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.Utilities;
 import util.Speaker;
 
 /**
@@ -60,6 +62,7 @@ public class Interface extends javax.swing.JFrame {
         pronunciation_style = new SimpleAttributeSet();
         explanation_style = new SimpleAttributeSet();
         heading_style = new SimpleAttributeSet();
+        recommendation_style = new SimpleAttributeSet();
 
         
         StyleConstants.setFontSize(word_target_style, 30);
@@ -73,6 +76,9 @@ public class Interface extends javax.swing.JFrame {
         StyleConstants.setForeground(pronunciation_style, Color.green);
 
         StyleConstants.setFontSize(explanation_style, 15);
+        
+        StyleConstants.setForeground(recommendation_style, Color.blue);
+        StyleConstants.setUnderline(recommendation_style, true);
 
     }
 
@@ -218,7 +224,6 @@ public class Interface extends javax.swing.JFrame {
         addFailPopup.setTitle("Add fail");
         addFailPopup.setBounds(new java.awt.Rectangle(0, 0, 132, 110));
         addFailPopup.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        addFailPopup.setPreferredSize(new java.awt.Dimension(132, 110));
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel5.setText("Add fail!");
@@ -507,6 +512,11 @@ public class Interface extends javax.swing.JFrame {
         );
 
         wordExplainField.setEditable(false);
+        wordExplainField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectWord(evt);
+            }
+        });
         jScrollPane3.setViewportView(wordExplainField);
 
         javax.swing.GroupLayout DisplayPanelLayout = new javax.swing.GroupLayout(DisplayPanel);
@@ -662,6 +672,30 @@ public class Interface extends javax.swing.JFrame {
     private void removeTargetWordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTargetWordTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_removeTargetWordTextFieldActionPerformed
+
+    private void selectWord(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectWord
+        // TODO add your handling code here:
+        if (currentRecommendationList == null) {
+            return;
+        }
+        
+        try {
+            String wrd=null;
+            int pt=wordExplainField.viewToModel(evt.getPoint());
+            int spt=Utilities.getWordStart(wordExplainField,pt);
+            int ept=Utilities.getWordEnd(wordExplainField,pt);
+            wordExplainField.setSelectionStart(spt);
+            wordExplainField.setSelectionEnd(ept);
+            wrd=wordExplainField.getSelectedText();
+            for (Word w : currentRecommendationList) {
+                if (w.getWordTarget().equals(wrd)) {
+                    updateWord(wrd);
+                }
+            }
+        }
+        catch(BadLocationException e) {
+        }
+    }//GEN-LAST:event_selectWord
     
     /**
      * @param args the command line arguments
@@ -709,8 +743,20 @@ public class Interface extends javax.swing.JFrame {
 
         String[] word_data = DictionaryManagement.dictionaryLookup(dict, word_target);
         if (word_data == null) {
-            wordExplainField.setText(word_target + " not found");
-            return;
+            try {
+                doc.insertString(doc.getLength(), word_target + " not found\n", explanation_style);
+                doc.insertString(doc.getLength(), "Did you mean:\n", explanation_style);
+
+                List<Word> suggestions = dict.getRecommendations(word_target);
+                currentRecommendationList = suggestions;
+                for (Word w : suggestions) {
+                    doc.insertString(doc.getLength(), "-" + w.getWordTarget() + '\n', recommendation_style);
+                }
+
+                return;
+            }
+            catch (BadLocationException e) {
+            }
         }
 
         String word_explain = word_data[0];
@@ -740,10 +786,12 @@ public class Interface extends javax.swing.JFrame {
 
     // User declaration
     private final Dictionary dict;
+    private List<Word> currentRecommendationList = null;
     private final SimpleAttributeSet word_target_style;
     private final SimpleAttributeSet pronunciation_style;
     private final SimpleAttributeSet heading_style;
     private final SimpleAttributeSet explanation_style;
+    private final SimpleAttributeSet recommendation_style;
     private final Speaker speaker;
     
     private javax.swing.JButton speakerButton;
