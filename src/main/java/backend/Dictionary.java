@@ -50,7 +50,7 @@ public class Dictionary {
     }
 
     public List<Word> get(String prefix) {
-        if (!words.contains(prefix)) {
+        if (!words.contains(prefix.toLowerCase())) {
             return new ArrayList<>();
         }
         return words.queryPrefix(prefix.toLowerCase());

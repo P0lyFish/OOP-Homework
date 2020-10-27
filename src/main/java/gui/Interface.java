@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -19,11 +20,13 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.Utilities;
+import util.Img2Text;
 import util.Speaker;
 
 /**
@@ -37,6 +40,7 @@ public class Interface extends javax.swing.JFrame {
      * @throws java.io.IOException
      */
     public Interface() throws IOException {
+        this.img2txt = new Img2Text();
         speakerButton = new javax.swing.JButton();
                System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
@@ -126,6 +130,7 @@ public class Interface extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         DisplayPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         wordExplainField = new javax.swing.JTextPane();
@@ -471,6 +476,13 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("select image");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseImage(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
@@ -485,8 +497,8 @@ public class Interface extends javax.swing.JFrame {
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(searchButton)
                             .addComponent(removeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -507,7 +519,9 @@ public class Interface extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(addButton)
                         .addGap(9, 9, 9)
-                        .addComponent(removeButton)))
+                        .addComponent(removeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -696,6 +710,15 @@ public class Interface extends javax.swing.JFrame {
         catch(BadLocationException e) {
         }
     }//GEN-LAST:event_selectWord
+
+    private void chooseImage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseImage
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(null);
+        File file = fileChooser.getSelectedFile();
+        String filename = file.getAbsolutePath();
+        updateWord(img2txt.getText(filename));
+    }//GEN-LAST:event_chooseImage
     
     /**
      * @param args the command line arguments
@@ -738,6 +761,7 @@ public class Interface extends javax.swing.JFrame {
     
 
     public void updateWord(String word_target) {
+        word_target = word_target.toLowerCase();
         wordExplainField.setText("");
         Document doc = wordExplainField.getStyledDocument();
 
@@ -793,6 +817,7 @@ public class Interface extends javax.swing.JFrame {
     private final SimpleAttributeSet explanation_style;
     private final SimpleAttributeSet recommendation_style;
     private final Speaker speaker;
+    private final Img2Text img2txt;
     
     private javax.swing.JButton speakerButton;
 
@@ -809,6 +834,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JButton closeRemoveSuccessfullyPopup;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
