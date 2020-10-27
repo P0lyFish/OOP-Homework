@@ -122,6 +122,17 @@ public class Interface extends javax.swing.JFrame {
         removeFailedPopup = new javax.swing.JDialog();
         jLabel10 = new javax.swing.JLabel();
         closeRemoveFailedPopup = new javax.swing.JButton();
+        modifyDiaglog = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        wordTargetModificationField = new javax.swing.JTextField();
+        wordPronounciationModificationField = new javax.swing.JTextField();
+        wordMeaningModificationField = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        modificationStatus = new javax.swing.JLabel();
         searchPanel = new javax.swing.JPanel();
         searchBar = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
@@ -131,6 +142,7 @@ public class Interface extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        modifyButton = new javax.swing.JButton();
         DisplayPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         wordExplainField = new javax.swing.JTextPane();
@@ -428,6 +440,93 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        modifyDiaglog.setBounds(new java.awt.Rectangle(0, 0, 530, 427));
+
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel11.setText("Modify word");
+
+        jLabel12.setText("Word:");
+
+        jLabel13.setText("New pronounciation:");
+
+        jLabel14.setText("New meaning:");
+
+        jButton4.setText("Save");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveModification(evt);
+            }
+        });
+
+        jButton5.setText("Cancel");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeModifyDialog(evt);
+            }
+        });
+
+        modificationStatus.setText("jLabel15");
+
+        javax.swing.GroupLayout modifyDiaglogLayout = new javax.swing.GroupLayout(modifyDiaglog.getContentPane());
+        modifyDiaglog.getContentPane().setLayout(modifyDiaglogLayout);
+        modifyDiaglogLayout.setHorizontalGroup(
+            modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifyDiaglogLayout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
+            .addGroup(modifyDiaglogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modifyDiaglogLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(modificationStatus))
+                    .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(wordMeaningModificationField)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyDiaglogLayout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addGap(124, 124, 124)
+                            .addComponent(wordTargetModificationField, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyDiaglogLayout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addGap(18, 18, 18)
+                            .addComponent(wordPronounciationModificationField))
+                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        modifyDiaglogLayout.setVerticalGroup(
+            modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifyDiaglogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(wordTargetModificationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(wordPronounciationModificationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modifyDiaglogLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(wordMeaningModificationField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(modificationStatus)
+                        .addContainerGap(67, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyDiaglogLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         searchBar.addActionListener(new java.awt.event.ActionListener() {
@@ -483,6 +582,13 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        modifyButton.setText("Modify");
+        modifyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                openModifyDialog(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
@@ -495,10 +601,11 @@ public class Interface extends javax.swing.JFrame {
                             .addComponent(searchBar, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchButton)
                             .addComponent(removeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -509,20 +616,23 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton))
+                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(addButton)
                         .addGap(9, 9, 9)
                         .addComponent(removeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(modifyButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         wordExplainField.setEditable(false);
@@ -716,9 +826,37 @@ public class Interface extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
         File file = fileChooser.getSelectedFile();
-        String filename = file.getAbsolutePath();
-        updateWord(img2txt.getText(filename));
+        if (file != null) {
+            String filename = file.getAbsolutePath();
+            updateWord(img2txt.getText(filename));
+        }
     }//GEN-LAST:event_chooseImage
+
+    private void openModifyDialog(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openModifyDialog
+        // TODO add your handling code here:
+        modifyDiaglog.setVisible(true);
+    }//GEN-LAST:event_openModifyDialog
+
+    private void closeModifyDialog(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeModifyDialog
+        // TODO add your handling code here:
+        modifyDiaglog.dispose();
+    }//GEN-LAST:event_closeModifyDialog
+
+    private void saveModification(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveModification
+        // TODO add your handling code here:
+        String word = wordTargetModificationField.getText();
+        String newPronounciation = wordPronounciationModificationField.getText();
+        String newMeaning = wordMeaningModificationField.getText();
+        
+        if (!dict.contains(word)) {
+            modificationStatus.setText("This word does not exist!");
+        }
+        else {
+            modificationStatus.setText("Done!");
+            dict.remove(word);
+            dict.add(word, newMeaning, newPronounciation);
+        }
+    }//GEN-LAST:event_saveModification
     
     /**
      * @param args the command line arguments
@@ -835,8 +973,14 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -850,6 +994,9 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JList<String> matchingList;
     private javax.swing.JTextField meaningTextField;
+    private javax.swing.JLabel modificationStatus;
+    private javax.swing.JButton modifyButton;
+    private javax.swing.JDialog modifyDiaglog;
     private javax.swing.JTextField pronounciationTextField;
     private javax.swing.JButton removeButton;
     private javax.swing.JDialog removeFailedPopup;
@@ -861,6 +1008,9 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextPane wordExplainField;
+    private javax.swing.JTextField wordMeaningModificationField;
+    private javax.swing.JTextField wordPronounciationModificationField;
+    private javax.swing.JTextField wordTargetModificationField;
     private javax.swing.JTextField wordTextField;
     // End of variables declaration//GEN-END:variables
 }
