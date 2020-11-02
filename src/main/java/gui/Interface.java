@@ -465,8 +465,6 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
-        modificationStatus.setText("jLabel15");
-
         javax.swing.GroupLayout modifyDiaglogLayout = new javax.swing.GroupLayout(modifyDiaglog.getContentPane());
         modifyDiaglog.getContentPane().setLayout(modifyDiaglogLayout);
         modifyDiaglogLayout.setHorizontalGroup(
@@ -518,7 +516,7 @@ public class Interface extends javax.swing.JFrame {
                         .addComponent(wordMeaningModificationField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(modificationStatus)
-                        .addContainerGap(67, Short.MAX_VALUE))
+                        .addContainerGap(85, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyDiaglogLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(modifyDiaglogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -545,6 +543,11 @@ public class Interface extends javax.swing.JFrame {
         matchingList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chooseWordFromMatchingBox(evt);
+            }
+        });
+        matchingList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                deleteWord(evt);
             }
         });
         matchingList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -678,10 +681,7 @@ public class Interface extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateMatchingList(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMatchingList
-        // TODO add your handling code here:
-        String currentText = searchBar.getText();
-        
+    private void updateMatchingList(String currentText) {
         List<String> matching_words = DictionaryManagement.getPrefixMatchedList(dict, currentText);
         DefaultListModel<String> listModel = new DefaultListModel<>();
         matching_words.forEach(s -> {
@@ -689,6 +689,13 @@ public class Interface extends javax.swing.JFrame {
         });
 
         matchingList.setModel(listModel);
+    }
+    
+    private void updateMatchingList(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMatchingList
+        // TODO add your handling code here:
+        String currentText = searchBar.getText();
+        
+        updateMatchingList(currentText);
     }//GEN-LAST:event_updateMatchingList
 
     private void pressEnterFromSearchBar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pressEnterFromSearchBar
@@ -857,6 +864,14 @@ public class Interface extends javax.swing.JFrame {
             dict.add(word, newMeaning, newPronounciation);
         }
     }//GEN-LAST:event_saveModification
+
+    private void deleteWord(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_deleteWord
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_DELETE) {
+            dict.remove(matchingList.getSelectedValue());
+        }
+        updateMatchingList("");
+    }//GEN-LAST:event_deleteWord
     
     /**
      * @param args the command line arguments
