@@ -10,6 +10,7 @@ import backend.DictionaryManagement;
 import backend.Word;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -43,6 +44,8 @@ public class Interface extends javax.swing.JFrame {
         this.img2txt = new Img2Text();
         speakerButton = new javax.swing.JButton();
                System.out.println("Working Directory = " + System.getProperty("user.dir"));
+               
+        // searchButton.setMargin(new Insets(0, 0, 0, 0));
 
         this.speaker = new Speaker();
         this.speakerButton.addMouseListener(new MouseAdapter() {
@@ -526,6 +529,9 @@ public class Interface extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(58, 198, 218));
+
+        searchPanel.setBackground(new java.awt.Color(220, 229, 140));
 
         searchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
